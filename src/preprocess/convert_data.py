@@ -70,13 +70,14 @@ def convert_jsonl_to_json(input_file, output_file):
     for rel in relationships:
         rel_color = relationship_colors[rel['label']]
         new_line = {
-            "from": rel['start']['id'],
+            "from": rel['start']['id'],     
             "to": rel['end']['id'],
             "text": rel['label'],
             "color": rel_color,
-            "fontColor": rel_color,
             "data": {
                 "type": rel['label'],
+                "fromText": rel['start']['properties'].get('id', ''),
+                "toText": rel['end']['properties'].get('id', ''),
                 "description": rel['properties'].get('description', ''),
                 "weight": rel['properties'].get('weight', 1.0)
             }
